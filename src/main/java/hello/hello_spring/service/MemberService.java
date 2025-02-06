@@ -4,6 +4,9 @@ import hello.hello_spring.domain.Member;
 import hello.hello_spring.repository.MemberRepository;
 import hello.hello_spring.repository.MemoryMeberRepository;
 import hello.hello_spring.test.CustomConsumer;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,10 +14,16 @@ import java.util.function.Consumer;
 
 public class MemberService {
 
-    private final MemberRepository memberRepository = new MemoryMeberRepository();
+    //private final MemberRepository memberRepository = new MemoryMeberRepository();
+    private final MemberRepository memberRepository;
+
+    @Autowired
+    public MemberService(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
 
     /*회원가입*/
-    public  Long join(Member member){
+    public  Long   join(Member member){
         // 같은 이름이 있는 중복 회원은 x.
         //Member result = memberRepository.findByName(member.getName()).orElseThrow(RuntimeException::new);
 

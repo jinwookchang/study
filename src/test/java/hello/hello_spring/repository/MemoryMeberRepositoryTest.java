@@ -21,7 +21,7 @@ class MemoryMeberRepositoryTest  {
     @Test
     public void save(){
         Member member = new Member();
-        member.setName("Spri ng");
+        member.setName("Spring");
 
         repository.save(member);
         Member result = repository.findById(member.getId()).get() ;
