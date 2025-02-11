@@ -4,6 +4,7 @@ import hello.hello_spring.domain.Member;
 import hello.hello_spring.repository.MemberRepository;
 import hello.hello_spring.repository.MemoryMeberRepository;
 import hello.hello_spring.test.CustomConsumer;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
 
+@Transactional 
 public class MemberService {
 
     //private final MemberRepository memberRepository = new MemoryMeberRepository();
@@ -33,7 +35,7 @@ public class MemberService {
         });*/
 
         validateDuplicate(member);
-        memberRepository.save(member);
+        memberRepository. save(member);
         return member.getId();
     }
 

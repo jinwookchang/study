@@ -1,37 +1,34 @@
 package hello.hello_spring.service;
 
 import hello.hello_spring.domain.Member;
+import hello.hello_spring.repository.MemberRepository;
 import hello.hello_spring.repository.MemoryMeberRepository;
+import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+@SpringBootTest
+@Transactional
 class MemberServiceIntergrationTest {
 
     //MemberService memberService = new MemberService();
     //MemoryMeberRepository memoryMeberRepository = new MemoryMeberRepository();
-    MemberService memberService;
-    MemoryMeberRepository memoryMeberRepository;
+    @Autowired MemberService memberService;
+    @Autowired
+    MemberRepository memberRepository;
 
-    @BeforeEach
-    public void beforeEach(){
-        memoryMeberRepository = new MemoryMeberRepository();
-        memberService = new MemberService(memoryMeberRepository);
-    }
-
-    @AfterEach
-    public void afterEach(){
-        memoryMeberRepository.clearStore();
-    }
 
     @Test
     void 회원가입() {
         //given
         Member member = new Member();
-        member.setName("송영민 ");
+        member.setName("송영민100");
 
 
         //when
@@ -65,11 +62,4 @@ class MemberServiceIntergrationTest {
         //then
     }
 
-    @Test
-    void findMembers() {
-    }
-
-    @Test
-    void findOne() {
-    }
 }
